@@ -14,7 +14,7 @@ uint32_t SimpleGraph::getNoVertices() const {
 
 void SimpleGraph::setNoVertices(uint32_t n) {
     V = n;
-//    adj.resize(V);
+    adj1.resize(V);
 //    reverse_adj.resize(V);
 }
 
@@ -28,25 +28,25 @@ void SimpleGraph::setNoLabels(uint32_t noLabels) {
 //    reverse_adj.resize(L);
 }
 
-//uint32_t SimpleGraph::getNoEdges() const {
-//    uint32_t sum = 0;
-//    for (const auto & l : adj)
-//        sum += (uint32_t )l.size();
-//    return sum;
-//}
+uint32_t SimpleGraph::getNoEdges() const {
+    uint32_t sum = 0;
+    for (const auto & l : adj1)
+        sum += (uint32_t )l.size();
+    return sum;
+}
 
 // sort on the second item in the pair, then on the first (ascending order)
-//bool sortPairs(const std::pair<uint32_t,uint32_t> &a, const std::pair<uint32_t,uint32_t> &b) {
-//    if (a.second < b.second) return true;
-//    if (a.second == b.second) return a.first < b.first;
-//    return false;
-//}
-/*
+bool sortPairs(const std::pair<uint32_t,uint32_t> &a, const std::pair<uint32_t,uint32_t> &b) {
+    if (a.second < b.second) return true;
+    if (a.second == b.second) return a.first < b.first;
+    return false;
+}
+
 uint32_t SimpleGraph::getNoDistinctEdges() const {
 
     uint32_t sum = 0;
 
-    for (auto sourceVec : adj) {
+    for (auto sourceVec : adj1) {
 
         std::sort(sourceVec.begin(), sourceVec.end(), sortPairs);
 
@@ -66,7 +66,7 @@ uint32_t SimpleGraph::getNoDistinctEdges() const {
 
     return sum;
 }
-*/
+
 
 void SimpleGraph::addEdge(uint32_t from, uint32_t to, uint32_t edgeLabel) {
     if(from >= V || to >= V || edgeLabel >= L)
@@ -74,6 +74,7 @@ void SimpleGraph::addEdge(uint32_t from, uint32_t to, uint32_t edgeLabel) {
                                          "(" + std::to_string(from) + "," + std::to_string(to) + "," +
                                          std::to_string(edgeLabel) + ")");
     adj[edgeLabel].emplace_back(std::make_pair(from,to));
+    adj1[from].emplace_back(std::make_pair(edgeLabel, to));
 //    adj[edgeLabel].insert(std::make_pair(from, to));
 }
 
