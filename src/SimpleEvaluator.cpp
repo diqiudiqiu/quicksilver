@@ -26,6 +26,20 @@ void SimpleEvaluator::prepare() {
     // prepare other things here.., if necessary
 
 }
+bool rightcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
+    if(firstElem.first==secondElem.first)
+    {
+        return firstElem.second<secondElem.second;
+    }
+    return firstElem.first < secondElem.first;
+}
+bool leftcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
+    if(firstElem.second==secondElem.second)
+    {
+        return firstElem.first<secondElem.first;
+    }
+    return firstElem.second < secondElem.second;
+}
 
 cardStat SimpleEvaluator::computeStats(std::shared_ptr<SimpleGraph> &g) {
 
@@ -35,6 +49,7 @@ cardStat SimpleEvaluator::computeStats(std::shared_ptr<SimpleGraph> &g) {
     std::set<uint32_t > Out;
 //    stats.noPaths=(uint32_t )g->adj[0].size();
     stats.noPaths = g->getNoDistinctEdges();
+
     for(auto card:g->adj[0])
     {
         Out.insert(card.first);
@@ -59,9 +74,10 @@ std::shared_ptr<SimpleGraph> SimpleEvaluator::project(uint32_t projectLabel, boo
             return table[0].at(k);
         } else
         {
-            for (auto edge: in->adj[projectLabel]) {
-                out->addEdge(edge.first, edge.second, 0);
-            }
+//            for (auto edge: in->adj[projectLabel]) {
+//                out->addEdge(edge.first, edge.second, 0);
+//            }
+            out->adj[0]=in->adj[projectLabel];
             table[0].insert(std::map<int , std::shared_ptr<SimpleGraph>>::value_type(k,out));
             return out;
         }
@@ -75,45 +91,16 @@ std::shared_ptr<SimpleGraph> SimpleEvaluator::project(uint32_t projectLabel, boo
             for (auto edge: in->adj[projectLabel]) {
                 out->addEdge(edge.second, edge.first, 0);
             }
+//            out->adj[0]=in->adj[projectLabel];
             table[1].insert(std::map<int , std::shared_ptr<SimpleGraph>>::value_type(k,out));
             return out;
         }
     }
 
-//
-//    if(table.find(k)!=table.end())
-//    {
-//        return table.at(k);
-//    } else {
-//        if (!inverse) {
-//            for (auto edge: in->adj[projectLabel]) {
-//                out->addEdge(edge.first, edge.second, 0);
-//            }
-//        } else {
-//            for (auto edge: in->adj[projectLabel]) {
-//                out->addEdge(edge.second, edge.first, 0);
-//            }
-//        }
-//        table.insert(std::map<int , std::shared_ptr<SimpleGraph>>::value_type(k,out));
-//        return out;
-//    }
 
 }
 
-bool rightcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
-    if(firstElem.first==secondElem.first)
-    {
-        return firstElem.second<secondElem.second;
-    }
-    return firstElem.first < secondElem.first;
-}
-bool leftcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
-    if(firstElem.second==secondElem.second)
-    {
-        return firstElem.first<secondElem.first;
-    }
-    return firstElem.second < secondElem.second;
-}
+
 
 
 std::shared_ptr<SimpleGraph> SimpleEvaluator::join(std::shared_ptr<SimpleGraph> &left, std::shared_ptr<SimpleGraph> &right) {
@@ -125,9 +112,6 @@ std::shared_ptr<SimpleGraph> SimpleEvaluator::join(std::shared_ptr<SimpleGraph> 
     for(auto rightsource:right->adj[0]){
         righttable[rightsource.first].emplace_back(rightsource.second);
     }
-    std::sort(left->adj[0].begin(), left->adj[0].end(), leftcmp);
-//    std::sort(right->adj[0].begin(), right->adj[0].end(), rightcmp);
-//    auto rightSource=right->adj[0].begin();
     for(auto leftSource:left->adj[0]) {
         auto leftTarget = leftSource.second;
         for (auto rightLabelTarget : righttable[leftTarget]) {
@@ -136,16 +120,6 @@ std::shared_ptr<SimpleGraph> SimpleEvaluator::join(std::shared_ptr<SimpleGraph> 
             out->addEdge(leftSource.first, rightTarget, 0);
 
         }
-//        if (rightSource->first < leftTarget && rightSource!=right->adj[0].end()) {
-//            rightSource++;
-//        } else {
-//            if (rightSource->first == leftSource.second) {
-//                out->addEdge(leftSource.first, rightSource->second, 0);
-//                continue;
-//            } else {
-//                continue;
-//            }
-//        }
     }
 
     return out;

@@ -45,8 +45,6 @@ Estimator.h
 ../include/Estimator.h
 SimpleGraph.h
 ../include/SimpleGraph.h
-map
--
 
 ../include/SimpleEvaluator.h
 memory
@@ -61,6 +59,10 @@ Evaluator.h
 ../include/Evaluator.h
 Graph.h
 ../include/Graph.h
+set
+-
+map
+-
 
 ../include/SimpleGraph.h
 unordered_map
@@ -77,40 +79,36 @@ fstream
 -
 Graph.h
 ../include/Graph.h
+set
+-
 
-/Users/KK/CS/DT/1/quicksilver/src/RPQTree.cpp
+/Users/KK/CS/DT/quicksilver/src/RPQTree.cpp
 iostream
 -
 RPQTree.h
-/Users/KK/CS/DT/1/quicksilver/src/RPQTree.h
+/Users/KK/CS/DT/quicksilver/src/RPQTree.h
 
-/Users/KK/CS/DT/1/quicksilver/src/SimpleEstimator.cpp
+/Users/KK/CS/DT/quicksilver/src/SimpleEstimator.cpp
 set
 -
 string
 -
 SimpleGraph.h
-/Users/KK/CS/DT/1/quicksilver/src/SimpleGraph.h
+/Users/KK/CS/DT/quicksilver/src/SimpleGraph.h
 SimpleEstimator.h
-/Users/KK/CS/DT/1/quicksilver/src/SimpleEstimator.h
-set
--
-SimpleGraph.h
-/Users/KK/CS/DT/1/quicksilver/src/SimpleGraph.h
-SimpleEstimator.h
-/Users/KK/CS/DT/1/quicksilver/src/SimpleEstimator.h
+/Users/KK/CS/DT/quicksilver/src/SimpleEstimator.h
 
-/Users/KK/CS/DT/1/quicksilver/src/SimpleEvaluator.cpp
+/Users/KK/CS/DT/quicksilver/src/SimpleEvaluator.cpp
 SimpleEstimator.h
-/Users/KK/CS/DT/1/quicksilver/src/SimpleEstimator.h
+/Users/KK/CS/DT/quicksilver/src/SimpleEstimator.h
 SimpleEvaluator.h
-/Users/KK/CS/DT/1/quicksilver/src/SimpleEvaluator.h
+/Users/KK/CS/DT/quicksilver/src/SimpleEvaluator.h
 
-/Users/KK/CS/DT/1/quicksilver/src/SimpleGraph.cpp
+/Users/KK/CS/DT/quicksilver/src/SimpleGraph.cpp
 SimpleGraph.h
-/Users/KK/CS/DT/1/quicksilver/src/SimpleGraph.h
+/Users/KK/CS/DT/quicksilver/src/SimpleGraph.h
 
-/Users/KK/CS/DT/1/quicksilver/src/main.cpp
+/Users/KK/CS/DT/quicksilver/src/main.cpp
 iostream
 -
 chrono

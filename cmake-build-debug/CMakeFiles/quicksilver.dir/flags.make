@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/KK/CS/DT/1/quicksilver/include 
+CXX_INCLUDES = -I/Users/KK/CS/DT/quicksilver/include 
 

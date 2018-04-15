@@ -3,14 +3,14 @@
 
 CMakeFiles/quicksilver.dir/src/RPQTree.cpp.o
  ../include/RPQTree.h
- /Users/KK/CS/DT/1/quicksilver/src/RPQTree.cpp
+ /Users/KK/CS/DT/quicksilver/src/RPQTree.cpp
 CMakeFiles/quicksilver.dir/src/SimpleEstimator.cpp.o
  ../include/Estimator.h
  ../include/Graph.h
  ../include/RPQTree.h
  ../include/SimpleEstimator.h
  ../include/SimpleGraph.h
- /Users/KK/CS/DT/1/quicksilver/src/SimpleEstimator.cpp
+ /Users/KK/CS/DT/quicksilver/src/SimpleEstimator.cpp
 CMakeFiles/quicksilver.dir/src/SimpleEvaluator.cpp.o
  ../include/Estimator.h
  ../include/Evaluator.h
@@ -19,11 +19,11 @@ CMakeFiles/quicksilver.dir/src/SimpleEvaluator.cpp.o
  ../include/SimpleEstimator.h
  ../include/SimpleEvaluator.h
  ../include/SimpleGraph.h
- /Users/KK/CS/DT/1/quicksilver/src/SimpleEvaluator.cpp
+ /Users/KK/CS/DT/quicksilver/src/SimpleEvaluator.cpp
 CMakeFiles/quicksilver.dir/src/SimpleGraph.cpp.o
  ../include/Graph.h
  ../include/SimpleGraph.h
- /Users/KK/CS/DT/1/quicksilver/src/SimpleGraph.cpp
+ /Users/KK/CS/DT/quicksilver/src/SimpleGraph.cpp
 CMakeFiles/quicksilver.dir/src/main.cpp.o
  ../include/Estimator.h
  ../include/Evaluator.h
@@ -32,4 +32,4 @@ CMakeFiles/quicksilver.dir/src/main.cpp.o
  ../include/SimpleEstimator.h
  ../include/SimpleEvaluator.h
  ../include/SimpleGraph.h
- /Users/KK/CS/DT/1/quicksilver/src/main.cpp
+ /Users/KK/CS/DT/quicksilver/src/main.cpp
