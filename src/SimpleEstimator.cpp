@@ -15,6 +15,25 @@ SimpleEstimator::SimpleEstimator(std::shared_ptr<SimpleGraph> &g){
 }
 
 void SimpleEstimator::prepare() {
+
+    // do your prep here
+
+}
+
+cardStat SimpleEstimator::estimate(RPQTree *q) {
+
+    // perform your estimation here
+    return cardStat {0, 0, 0};
+}
+
+/*
+SimpleEstimator::SimpleEstimator(std::shared_ptr<SimpleGraph> &g){
+
+    // works only with SimpleGraph
+    graph = g;
+}
+
+void SimpleEstimator::prepare() {
     CharacteristicSet characteristicSets;
     characteristicSets.CreateCharacteristicSet(graph);
     CharacSet=characteristicSets;
@@ -235,3 +254,4 @@ void CharacteristicSet::CreateCharacteristicSet(std::shared_ptr<SimpleGraph> &g)
         }
     }
 }
+*/

@@ -5,7 +5,7 @@
 #include "SimpleGraph.h"
 
 SimpleGraph::SimpleGraph(uint32_t n)   {
-    setNoVertices(n);
+    setNoLabels(n);
 }
 
 uint32_t SimpleGraph::getNoVertices() const {
@@ -14,24 +14,34 @@ uint32_t SimpleGraph::getNoVertices() const {
 
 void SimpleGraph::setNoVertices(uint32_t n) {
     V = n;
-    adj.resize(V);
-    reverse_adj.resize(V);
+//    adj.resize(V);
+//    reverse_adj.resize(V);
 }
 
-uint32_t SimpleGraph::getNoEdges() const {
-    uint32_t sum = 0;
-    for (const auto & l : adj)
-        sum += l.size();
-    return sum;
+uint32_t SimpleGraph::getNoLabels() const {
+    return L;
 }
+
+void SimpleGraph::setNoLabels(uint32_t noLabels) {
+    L = noLabels;
+    adj.resize(L);
+//    reverse_adj.resize(L);
+}
+
+//uint32_t SimpleGraph::getNoEdges() const {
+//    uint32_t sum = 0;
+//    for (const auto & l : adj)
+//        sum += (uint32_t )l.size();
+//    return sum;
+//}
 
 // sort on the second item in the pair, then on the first (ascending order)
-bool sortPairs(const std::pair<uint32_t,uint32_t> &a, const std::pair<uint32_t,uint32_t> &b) {
-    if (a.second < b.second) return true;
-    if (a.second == b.second) return a.first < b.first;
-    return false;
-}
-
+//bool sortPairs(const std::pair<uint32_t,uint32_t> &a, const std::pair<uint32_t,uint32_t> &b) {
+//    if (a.second < b.second) return true;
+//    if (a.second == b.second) return a.first < b.first;
+//    return false;
+//}
+/*
 uint32_t SimpleGraph::getNoDistinctEdges() const {
 
     uint32_t sum = 0;
@@ -56,22 +66,15 @@ uint32_t SimpleGraph::getNoDistinctEdges() const {
 
     return sum;
 }
-
-uint32_t SimpleGraph::getNoLabels() const {
-    return L;
-}
-
-void SimpleGraph::setNoLabels(uint32_t noLabels) {
-    L = noLabels;
-}
+*/
 
 void SimpleGraph::addEdge(uint32_t from, uint32_t to, uint32_t edgeLabel) {
     if(from >= V || to >= V || edgeLabel >= L)
         throw std::runtime_error(std::string("Edge data out of bounds: ") +
                                          "(" + std::to_string(from) + "," + std::to_string(to) + "," +
                                          std::to_string(edgeLabel) + ")");
-    adj[from].emplace_back(std::make_pair(edgeLabel, to));
-    reverse_adj[to].emplace_back(std::make_pair(edgeLabel, from));
+    adj[edgeLabel].emplace_back(std::make_pair(from,to));
+//    adj[edgeLabel].insert(std::make_pair(from, to));
 }
 
 void SimpleGraph::readFromContiguousFile(const std::string &fileName) {
