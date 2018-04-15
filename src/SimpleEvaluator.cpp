@@ -33,7 +33,8 @@ cardStat SimpleEvaluator::computeStats(std::shared_ptr<SimpleGraph> &g) {
 
     std::set<uint32_t > In;
     std::set<uint32_t > Out;
-    stats.noPaths=(uint32_t )g->adj[0].size();
+//    stats.noPaths=(uint32_t )g->adj[0].size();
+    stats.noPaths = g->getNoDistinctEdges();
     for(auto card:g->adj[0])
     {
         Out.insert(card.first);

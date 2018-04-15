@@ -14,7 +14,7 @@ uint32_t SimpleGraph::getNoVertices() const {
 
 void SimpleGraph::setNoVertices(uint32_t n) {
     V = n;
-    adj1.resize(V);
+//    adj1.resize(V);
 //    reverse_adj.resize(V);
 }
 
@@ -30,15 +30,15 @@ void SimpleGraph::setNoLabels(uint32_t noLabels) {
 
 uint32_t SimpleGraph::getNoEdges() const {
     uint32_t sum = 0;
-    for (const auto & l : adj1)
+    for (const auto & l : adj)
         sum += (uint32_t )l.size();
     return sum;
 }
 
 // sort on the second item in the pair, then on the first (ascending order)
 bool sortPairs(const std::pair<uint32_t,uint32_t> &a, const std::pair<uint32_t,uint32_t> &b) {
-    if (a.second < b.second) return true;
-    if (a.second == b.second) return a.first < b.first;
+    if (a.first < b.first) return true;
+    if (a.first == b.first) return a.second < b.second;
     return false;
 }
 
@@ -46,20 +46,20 @@ uint32_t SimpleGraph::getNoDistinctEdges() const {
 
     uint32_t sum = 0;
 
-    for (auto sourceVec : adj1) {
+    for (auto sourceVec : adj) {
 
         std::sort(sourceVec.begin(), sourceVec.end(), sortPairs);
 
         uint32_t prevTarget = 0;
-        uint32_t prevLabel = 0;
+        uint32_t prevSource = 0;
         bool first = true;
 
-        for (const auto &labelTgtPair : sourceVec) {
-            if (first || !(prevTarget == labelTgtPair.second && prevLabel == labelTgtPair.first)) {
+        for (const auto &SrcTgtPair : sourceVec) {
+            if (first || !(prevTarget == SrcTgtPair.second && prevSource == SrcTgtPair.first)) {
                 first = false;
                 sum++;
-                prevTarget = labelTgtPair.second;
-                prevLabel = labelTgtPair.first;
+                prevTarget = SrcTgtPair.second;
+                prevSource = SrcTgtPair.first;
             }
         }
     }
@@ -74,7 +74,7 @@ void SimpleGraph::addEdge(uint32_t from, uint32_t to, uint32_t edgeLabel) {
                                          "(" + std::to_string(from) + "," + std::to_string(to) + "," +
                                          std::to_string(edgeLabel) + ")");
     adj[edgeLabel].emplace_back(std::make_pair(from,to));
-    adj1[from].emplace_back(std::make_pair(edgeLabel, to));
+//    adj1[from].emplace_back(std::make_pair(edgeLabel, to));
 //    adj[edgeLabel].insert(std::make_pair(from, to));
 }
 
