@@ -26,20 +26,20 @@ void SimpleEvaluator::prepare() {
     // prepare other things here.., if necessary
 
 }
-bool rightcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
-    if(firstElem.first==secondElem.first)
-    {
-        return firstElem.second<secondElem.second;
-    }
-    return firstElem.first < secondElem.first;
-}
-bool leftcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
-    if(firstElem.second==secondElem.second)
-    {
-        return firstElem.first<secondElem.first;
-    }
-    return firstElem.second < secondElem.second;
-}
+//bool rightcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
+//    if(firstElem.first==secondElem.first)
+//    {
+//        return firstElem.second<secondElem.second;
+//    }
+//    return firstElem.first < secondElem.first;
+//}
+//bool leftcmp(const std::pair<uint32_t, uint32_t> &firstElem, const std::pair<uint32_t, uint32_t> &secondElem) {
+//    if(firstElem.second==secondElem.second)
+//    {
+//        return firstElem.first<secondElem.first;
+//    }
+//    return firstElem.second < secondElem.second;
+//}
 
 cardStat SimpleEvaluator::computeStats(std::shared_ptr<SimpleGraph> &g) {
 
@@ -88,10 +88,10 @@ std::shared_ptr<SimpleGraph> SimpleEvaluator::project(uint32_t projectLabel, boo
             return table[1].at(k);
         } else
         {
-            for (auto edge: in->adj[projectLabel]) {
-                out->addEdge(edge.second, edge.first, 0);
-            }
-//            out->adj[0]=in->adj[projectLabel];
+//            for (auto edge: in->adj[projectLabel]) {
+//                out->addEdge(edge.second, edge.first, 0);
+//            }
+            out->adj[0]=in->reverse_adj[projectLabel];
             table[1].insert(std::map<int , std::shared_ptr<SimpleGraph>>::value_type(k,out));
             return out;
         }

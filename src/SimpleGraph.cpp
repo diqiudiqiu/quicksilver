@@ -25,7 +25,7 @@ uint32_t SimpleGraph::getNoLabels() const {
 void SimpleGraph::setNoLabels(uint32_t noLabels) {
     L = noLabels;
     adj.resize(L);
-//    reverse_adj.resize(L);
+    reverse_adj.resize(L);
 }
 
 uint32_t SimpleGraph::getNoEdges() const {
@@ -74,6 +74,7 @@ void SimpleGraph::addEdge(uint32_t from, uint32_t to, uint32_t edgeLabel) {
                                          "(" + std::to_string(from) + "," + std::to_string(to) + "," +
                                          std::to_string(edgeLabel) + ")");
     adj[edgeLabel].emplace_back(std::make_pair(from,to));
+    reverse_adj[edgeLabel].emplace_back(std::make_pair(to,from));
 //    adj1[from].emplace_back(std::make_pair(edgeLabel, to));
 //    adj[edgeLabel].insert(std::make_pair(from, to));
 }
