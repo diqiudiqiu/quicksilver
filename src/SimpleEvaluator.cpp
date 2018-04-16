@@ -21,29 +21,27 @@ void SimpleEvaluator::attachEstimator(std::shared_ptr<SimpleEstimator> &e) {
 void SimpleEvaluator::prepare() {
 
     // if attached, prepare the estimator
-    if(est != nullptr) est->prepare();
-    for(uint32_t i=0;i<graph->getNoLabels();i++)
-    {
+    if (est != nullptr) est->prepare();
+    for (uint32_t i = 0; i < graph->getNoLabels(); i++) {
         std::vector<std::vector<uint32_t>> right;
         std::vector<std::vector<uint32_t>> right1;
         right.resize(graph->getNoVertices());
         right1.resize(graph->getNoVertices());
         std::stringstream query;
-        query<<i<<'+';
+        query << i << '+';
         std::stringstream query1;
-        query1<<i<<'-';
-        for(auto edge:graph->adj[i])
-        {
+        query1 << i << '-';
+        for (auto edge:graph->adj[i]) {
             right[edge.first].emplace_back(edge.second);
             right1[edge.second].emplace_back(edge.first);
         }
 
-        est->lefttable.insert(std::make_pair(query.str(),right1));
-        est->lefttable.insert(std::make_pair(query1.str(),right));
-        est->righttable.insert(std::make_pair(query.str(),right));
-        est->righttable.insert(std::make_pair(query1.str(),right1));
+        est->lefttable.insert(std::make_pair(query.str(), right1));
+        est->lefttable.insert(std::make_pair(query1.str(), right));
+        est->righttable.insert(std::make_pair(query.str(), right));
+        est->righttable.insert(std::make_pair(query1.str(), right1));
     }
-
+}
 
 bool sortPairs(const uint32_t &a, const uint32_t &b) {
     return a<b;

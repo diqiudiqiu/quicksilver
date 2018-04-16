@@ -12,7 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eee30e11-4bbb-4569-8965-de19a565e394" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/include/SimpleEvaluator.h" afterPath="$PROJECT_DIR$/include/SimpleEvaluator.h" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/quicksilver.dir/src/SimpleEstimator.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/quicksilver.dir/src/SimpleEstimator.cpp.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/quicksilver.dir/src/SimpleEvaluator.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/quicksilver.dir/src/SimpleEvaluator.cpp.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/quicksilver.dir/src/main.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/quicksilver.dir/src/main.cpp.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/quicksilver" afterPath="$PROJECT_DIR$/cmake-build-debug/quicksilver" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleEstimator.cpp" afterPath="$PROJECT_DIR$/src/SimpleEstimator.cpp" />
       <change beforePath="$PROJECT_DIR$/src/SimpleEvaluator.cpp" afterPath="$PROJECT_DIR$/src/SimpleEvaluator.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -26,11 +31,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SimpleEvaluator.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SimpleEvaluator.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SimpleEvaluator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2261">
-              <caret line="134" column="21" lean-forward="false" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
+            <state relative-caret-position="371">
+              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding>
                 <element signature="e#53#81#0" expanded="true" />
               </folding>
@@ -71,14 +76,14 @@
       <file leaf-file-name="SimpleEstimator.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SimpleEstimator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="88" column="5" lean-forward="false" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+            <state relative-caret-position="419">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleEstimator.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimpleEstimator.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/SimpleEstimator.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="472">
@@ -112,10 +117,10 @@
       <list>
         <option value="$PROJECT_DIR$/include/SimpleGraph.h" />
         <option value="$PROJECT_DIR$/src/SimpleGraph.cpp" />
-        <option value="$PROJECT_DIR$/src/SimpleEstimator.cpp" />
         <option value="$PROJECT_DIR$/include/SimpleEstimator.h" />
-        <option value="$PROJECT_DIR$/src/SimpleEvaluator.cpp" />
         <option value="$PROJECT_DIR$/include/SimpleEvaluator.h" />
+        <option value="$PROJECT_DIR$/src/SimpleEstimator.cpp" />
+        <option value="$PROJECT_DIR$/src/SimpleEvaluator.cpp" />
       </list>
     </option>
   </component>
@@ -213,7 +218,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21831000" />
+    <option name="totallyTimeSpent" value="22620000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -225,7 +230,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5024665" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31438935" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29141474" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -252,7 +257,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/SimpleEvaluator.cpp</url>
-          <line>185</line>
+          <line>183</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -373,16 +378,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SimpleEvaluator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="134" column="21" lean-forward="false" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
-          <folding>
-            <element signature="e#53#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/SimpleEvaluator.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -407,20 +402,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SimpleEstimator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="88" column="5" lean-forward="false" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/SimpleEstimator.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
           <caret line="86" column="59" lean-forward="false" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="59" />
           <folding>
             <element signature="e#1586#1608#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SimpleEstimator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SimpleEvaluator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="e#53#81#0" expanded="true" />
           </folding>
         </state>
       </provider>

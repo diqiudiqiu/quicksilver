@@ -33,6 +33,7 @@ void SimpleEstimator::prepare() {
         count[i][0]=(uint32_t)sub.size();
         count[i][2]=(uint32_t)obj.size();
     }
+
 }
 
 uint32_t SimpleEstimator::estimateSize(std::vector<std::string> relations, uint32_t pos)
