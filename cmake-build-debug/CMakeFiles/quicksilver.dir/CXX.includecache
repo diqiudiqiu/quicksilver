@@ -45,6 +45,12 @@ Estimator.h
 ../include/Estimator.h
 SimpleGraph.h
 ../include/SimpleGraph.h
+map
+-
+vector
+-
+string
+-
 
 ../include/SimpleEvaluator.h
 memory
@@ -103,6 +109,10 @@ SimpleEstimator.h
 /Users/KK/CS/DT/quicksilver/src/SimpleEstimator.h
 SimpleEvaluator.h
 /Users/KK/CS/DT/quicksilver/src/SimpleEvaluator.h
+sstream
+-
+string
+-
 
 /Users/KK/CS/DT/quicksilver/src/SimpleGraph.cpp
 SimpleGraph.h

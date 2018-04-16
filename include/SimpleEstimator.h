@@ -70,17 +70,31 @@ public:
 
 #include "Estimator.h"
 #include "SimpleGraph.h"
+#include <map>
+#include <vector>
+#include <string>
 
 class SimpleEstimator : public Estimator {
 
     std::shared_ptr<SimpleGraph> graph;
 
+private:
+    std::vector<std::vector<uint32_t>> count;
+
 public:
+    std::map<std::string,std::shared_ptr<SimpleGraph>> lefttable;
+    std::map<std::string,std::vector<std::vector<uint32_t>>> righttable;
     explicit SimpleEstimator(std::shared_ptr<SimpleGraph> &g);
     ~SimpleEstimator() = default;
 
     void prepare() override ;
     cardStat estimate(RPQTree *q) override ;
+//    std::pair<uint32_t ,uint32_t > EstimateQueryCardinality(std::vector<std::string>, uint32_t L);
+    std::vector<std::string> traverseTree(RPQTree *q);
+    uint32_t estimateSize(std::vector<std::string> relations, uint32_t pos);
+    uint32_t estimateSize(std::vector<std::string> relations, uint32_t Tr, uint32_t Vry,uint32_t pos);
+    uint32_t estimateNaturalJoinSize(uint32_t Ts, uint32_t Tr, uint32_t Vsy = 10, uint32_t Vry = 10);
+//    float CCC(uint32_t O, uint32_t S,uint32_t cl,uint32_t O1);
 
 };
 

@@ -17,13 +17,93 @@ SimpleEstimator::SimpleEstimator(std::shared_ptr<SimpleGraph> &g){
 void SimpleEstimator::prepare() {
 
     // do your prep here
-
+    uint32_t L=graph->getNoLabels();
+    count.resize(L);
+    for (int i = 0; i < L; i++) {
+        count[i].resize(3, 0);
+    }
+    std::set<uint32_t > sub;
+    std::set<uint32_t > obj;
+    for(uint32_t i=0;i<L;i++) {
+        count[i][1]=(uint32_t)graph->adj[i].size();
+        for (auto labelclass:graph->adj[i]) {
+            sub.insert(labelclass.first);
+            obj.insert(labelclass.second);
+        }
+        count[i][0]=(uint32_t)sub.size();
+        count[i][2]=(uint32_t)obj.size();
+    }
 }
+
+uint32_t SimpleEstimator::estimateSize(std::vector<std::string> relations, uint32_t pos)
+{
+    uint32_t r = relations[pos][0]-'0';
+    pos++;
+    if(relations[pos-1][1]=='+'){
+        return estimateSize(relations, count[r][1], count[r][2],pos);
+    } else{
+        return estimateSize(relations, count[r][1], count[r][0],pos);
+    }
+}
+
+uint32_t SimpleEstimator::estimateSize(std::vector<std::string> relations, uint32_t Tr, uint32_t Vry, uint32_t pos)
+{
+    if(pos == relations.size())
+    {
+        return Tr;
+    }
+
+    uint32_t relation =relations[pos][0]-'0';
+    pos++;
+    if(relations[pos-1][1]=='+') {
+        uint32_t newSize = estimateNaturalJoinSize(Tr, count[relation][1], Vry, count[relation][2]);
+
+        return estimateSize(relations, newSize, count[relation][2], pos);
+    } else{
+        uint32_t newSize = estimateNaturalJoinSize(Tr, count[relation][1], Vry, count[relation][0]);
+
+        return estimateSize(relations, newSize, count[relation][0], pos);
+    }
+}
+
+uint32_t SimpleEstimator::estimateNaturalJoinSize(uint32_t Tr, uint32_t Ts, uint32_t Vry, uint32_t Vsy)
+{
+    return std::min(
+            (Tr*Ts)/Vsy,
+            (Ts*Tr)/Vry
+    );
+}
+
+
+std::vector<std::string> SimpleEstimator::traverseTree(RPQTree *q)
+{
+    std::vector<std::string> result;
+
+    if(q == nullptr) {
+        return result;
+    }
+
+    if(q->isLeaf())
+    {
+        result.push_back(q->data);
+    }
+
+    auto newAddition = traverseTree(q->left);
+    result.insert(result.end(),newAddition.begin(),newAddition.end());
+
+    newAddition = traverseTree(q->right);
+    result.insert(result.end(),newAddition.begin(),newAddition.end());
+
+    return result;
+}
+
 
 cardStat SimpleEstimator::estimate(RPQTree *q) {
 
     // perform your estimation here
-    return cardStat {0, 0, 0};
+    auto predicates = traverseTree(q);
+    uint32_t nopath=estimateSize(predicates,0);
+    return cardStat {0, nopath, 0};
 }
 
 /*
