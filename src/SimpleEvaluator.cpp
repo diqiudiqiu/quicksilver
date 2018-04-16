@@ -26,10 +26,14 @@ void SimpleEvaluator::prepare() {
     if(est != nullptr) est->prepare();
     for(uint32_t i=0;i<graph->getNoLabels();i++)
     {
-        auto out = std::make_shared<SimpleGraph>(1);
-        out->setNoVertices(graph->getNoVertices());
-        auto in = std::make_shared<SimpleGraph>(1);
-        in->setNoVertices(graph->getNoVertices());
+//        auto out = std::make_shared<SimpleGraph>(1);
+//        out->setNoVertices(graph->getNoVertices());
+//        auto in = std::make_shared<SimpleGraph>(1);
+//        in->setNoVertices(graph->getNoVertices());
+//        std::vector<std::vector<uint32_t>> left;
+//        std::vector<std::vector<uint32_t>> left1;
+//        left.resize(graph->getNoVertices());
+//        left1.resize(graph->getNoVertices());
         std::vector<std::vector<uint32_t>> right;
         std::vector<std::vector<uint32_t>> right1;
         right.resize(graph->getNoVertices());
@@ -40,14 +44,14 @@ void SimpleEvaluator::prepare() {
         query1<<i<<'-';
         for(auto edge:graph->adj[i])
         {
-            out->addEdge(edge.first,edge.second,0);
-            in->addEdge(edge.second,edge.first,0);
+//            out->addEdge(edge.first,edge.second,0);
+//            in->addEdge(edge.second,edge.first,0);
             right[edge.first].emplace_back(edge.second);
             right1[edge.second].emplace_back(edge.first);
         }
 
-        est->lefttable.insert(std::make_pair(query.str(),out));
-        est->lefttable.insert(std::make_pair(query1.str(),in));
+        est->lefttable.insert(std::make_pair(query.str(),right1));
+        est->lefttable.insert(std::make_pair(query1.str(),right));
         est->righttable.insert(std::make_pair(query.str(),right));
         est->righttable.insert(std::make_pair(query1.str(),right1));
     }
@@ -71,6 +75,54 @@ void SimpleEvaluator::prepare() {
 //    return firstElem.second < secondElem.second;
 //}
 
+bool sortPairs(const uint32_t &a, const uint32_t &b) {
+    return a<b;
+}
+
+uint32_t getNoDistinctEdges(std::vector<std::vector<uint32_t>> adj) {
+
+    uint32_t sum = 0;
+
+    for (uint32_t i=0;i<(uint32_t)adj.size();i++)
+    {
+        std::sort(adj[i].begin(), adj[i].end(), sortPairs);
+        uint32_t prevTarget = 0;
+        bool first = true;
+        for (uint32_t j=0;j<(uint32_t)adj[i].size();j++) {
+            if (first || prevTarget != adj[i][j]) {
+                first = false;
+                sum++;
+                prevTarget = adj[i][j];
+            }
+        }
+    }
+
+    return sum;
+}
+
+cardStat SimpleEvaluator::computeStats1(std::string q){
+    cardStat stats {};
+//    stats.noPaths=est->lefttable.find(q)->second->getNoDistinctEdges();
+    std::set<uint32_t > In;
+    auto right=est->righttable.find(q);
+    stats.noPaths=getNoDistinctEdges(right->second);
+    for(uint32_t i=0;i<graph->getNoVertices();i++)
+    {
+        if(!right->second[i].empty()){
+            stats.noOut++;
+        }
+    }
+    auto left=est->lefttable.find(q);
+    for(uint32_t i=0;i<graph->getNoVertices();i++)
+    {
+        if(!left->second[i].empty()){
+            stats.noIn++;
+        }
+    }
+//    stats.noIn=(uint32_t )In.size();
+    return stats;
+}
+/*
 cardStat SimpleEvaluator::computeStats(std::shared_ptr<SimpleGraph> &g) {
 
     cardStat stats {};
@@ -90,7 +142,7 @@ cardStat SimpleEvaluator::computeStats(std::shared_ptr<SimpleGraph> &g) {
     return stats;
 }
 
-/*
+
 std::shared_ptr<SimpleGraph> SimpleEvaluator::project(uint32_t projectLabel, bool inverse, std::shared_ptr<SimpleGraph> &in) {
 
     auto out = std::make_shared<SimpleGraph>(1);
@@ -231,27 +283,42 @@ std::string SimpleEvaluator::join1(std::string left, std::string right) {
 
     std::string joinq;
     joinq=left+right;
-    auto out = std::make_shared<SimpleGraph>(1);
-    out->setNoVertices(graph->getNoVertices());
+//    auto out = std::make_shared<SimpleGraph>(1);
+//    out->setNoVertices(graph->getNoVertices());
+    std::vector<std::vector<uint32_t >> leftout;
+    leftout.resize(graph->getNoVertices());
     std::vector<std::vector<uint32_t >> rightin;
     rightin.resize(graph->getNoVertices());
+
     auto leftp=est->lefttable.find(left);
     auto rightp=est->righttable.find(right);
-
-    for(auto leftSource:leftp->second->adj[0]) {
-        auto leftTarget = leftSource.second;
-        for (auto rightLabelTarget : rightp->second[leftTarget]) {
-            auto rightTarget = rightLabelTarget;
-            out->addEdge(leftSource.first, rightTarget, 0);
-            rightin[leftSource.first].emplace_back(rightTarget);
+    for(uint32_t i=0;i<graph->getNoVertices();i++)
+    {
+        if(!leftp->second[i].empty()&&!rightp->second[i].empty())
+        {
+            for(auto leftTarget:leftp->second[i]){
+                for(auto rightTarget:rightp->second[i])
+                {
+                    leftout[rightTarget].emplace_back(leftTarget);
+                    rightin[leftTarget].emplace_back(rightTarget);
+                }
+            }
         }
     }
-    est->lefttable.insert(std::make_pair(joinq,out));
+//    for(auto leftSource:leftp->second->adj[0]) {
+//        auto leftTarget = leftSource.second;
+//        for (auto rightLabelTarget : rightp->second[leftTarget]) {
+//            auto rightTarget = rightLabelTarget;
+//            out->addEdge(leftSource.first, rightTarget, 0);
+//            rightin[leftSource.first].emplace_back(rightTarget);
+//        }
+//    }
+    est->lefttable.insert(std::make_pair(joinq,leftout));
     est->righttable.insert(std::make_pair(joinq,rightin));
     return joinq;
 }
 
-std::shared_ptr<SimpleGraph> SimpleEvaluator::evaluate_aux1(std::vector<std::string> q, uint32_t pos){
+std::string SimpleEvaluator::evaluate_aux1(std::vector<std::string> q, uint32_t pos){
     uint32_t begin=0;
     uint32_t lpos=pos;
     auto leftq=leftpart(q,lpos);
@@ -269,7 +336,7 @@ std::shared_ptr<SimpleGraph> SimpleEvaluator::evaluate_aux1(std::vector<std::str
     {
         qq<<q[i];
     }
-    return est->lefttable.find(qq.str())->second;
+    return qq.str();
 }
 
 
@@ -277,6 +344,6 @@ cardStat SimpleEvaluator::evaluate(RPQTree *query) {
 //    bool jflag=true;
 //    auto res = evaluate_aux(query);
     auto querylist=est->traverseTree(query);
-    auto res=evaluate_aux1(querylist,(uint32_t)querylist.size());
-    return SimpleEvaluator::computeStats(res);
+    std::string query1=evaluate_aux1(querylist,(uint32_t)querylist.size());
+    return computeStats1(query1);
 }

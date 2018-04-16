@@ -34,13 +34,14 @@ public:
     void attachEstimator(std::shared_ptr<SimpleEstimator> &e);
 
 //    std::shared_ptr<SimpleGraph> evaluate_aux(RPQTree *q);
-    std::shared_ptr<SimpleGraph> evaluate_aux1(std::vector<std::string> q, uint32_t pos);
+    std::string evaluate_aux1(std::vector<std::string> q, uint32_t pos);
 //    static std::shared_ptr<SimpleGraph> project(uint32_t label, bool inverse, std::shared_ptr<SimpleGraph> &g);
 //    static std::shared_ptr<SimpleGraph> join(std::shared_ptr<SimpleGraph> &left, std::shared_ptr<SimpleGraph> &right);
     std::string join1(std::string left, std::string right);
     std::string leftpart(std::vector<std::string> q, uint32_t &pos);
     std::string rightpart(uint32_t begin,std::vector<std::string> q, uint32_t &pos);
-     static cardStat computeStats(std::shared_ptr<SimpleGraph> &g);
+//     static cardStat computeStats(std::shared_ptr<SimpleGraph> &g);
+    cardStat computeStats1(std::string q);
 
 };
 

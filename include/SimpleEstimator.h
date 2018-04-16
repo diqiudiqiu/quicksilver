@@ -82,8 +82,9 @@ private:
     std::vector<std::vector<uint32_t>> count;
 
 public:
-    std::map<std::string,std::shared_ptr<SimpleGraph>> lefttable;
+//    std::map<std::string,std::shared_ptr<SimpleGraph>> lefttable;
     std::map<std::string,std::vector<std::vector<uint32_t>>> righttable;
+    std::map<std::string,std::vector<std::vector<uint32_t>>> lefttable;
     explicit SimpleEstimator(std::shared_ptr<SimpleGraph> &g);
     ~SimpleEstimator() = default;
 
