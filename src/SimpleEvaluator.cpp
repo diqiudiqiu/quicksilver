@@ -52,7 +52,7 @@ void SimpleEvaluator::prepare() {
         est->righttable.insert(std::make_pair(query1.str(),right1));
     }
 
-    std::cout<<"hi"<<std::endl;
+//    std::cout<<"hi"<<std::endl;
     // prepare other things here.., if necessary
 
 }
